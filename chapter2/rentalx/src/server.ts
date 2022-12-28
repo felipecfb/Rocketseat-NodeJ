@@ -1,4 +1,4 @@
-import express, { Request, Response } from 'express';
+import express from 'express';
 
 import { categoriesRoutes } from './routes/categories.routes';
 import { specificationsRoutes } from './routes/specifications.routes';
