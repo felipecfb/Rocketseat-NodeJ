@@ -2,16 +2,15 @@ import { DataSource } from 'typeorm';
 
 export const AppDataSource = new DataSource({
   type: 'postgres',
-  host: 'db_rentx',
+  host: 'localhost',
   port: 5432,
   username: 'docker',
   password: 'ignite',
-  database: 'rentx',
+  database: 'db_rentx',
   synchronize: true,
   logging: true,
-  entities: [],
-  subscribers: [],
-  migrations: [],
+  entities: [`${__dirname}/**/entities/*.{ts,js}`],
+  migrations: [`${__dirname}/**/migrations/*.{ts,js}`],
 });
 
 AppDataSource.initialize()
