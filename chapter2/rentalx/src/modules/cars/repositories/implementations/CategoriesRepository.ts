@@ -10,18 +10,8 @@ import {
 class CategoriesRepository implements ICategoriesRespository {
   private repository: Repository<Category>;
 
-  private static INSTANCE: CategoriesRepository;
-
-  private constructor() {
+  constructor() {
     this.repository = AppDataSource.getRepository(Category);
-  }
-
-  public static getInstance(): CategoriesRepository {
-    if (!CategoriesRepository.INSTANCE) {
-      CategoriesRepository.INSTANCE = new CategoriesRepository();
-    }
-
-    return CategoriesRepository.INSTANCE;
   }
 
   async create({ name, description }: ICreateCategoryDTO): Promise<void> {
@@ -40,11 +30,7 @@ class CategoriesRepository implements ICategoriesRespository {
   }
 
   async findByName(name: string): Promise<Category> {
-    const category = await this.repository.findOne({
-      where: {
-        name,
-      },
-    });
+    const category = await this.repository.findOneBy({ name });
 
     return category;
   }
