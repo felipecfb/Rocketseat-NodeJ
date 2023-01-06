@@ -1,10 +1,10 @@
 import { Category } from '../../../database/entities/Category';
 import {
-  ICategoriesRespository,
+  ICategoriesRepository,
   ICreateCategoryDTO,
 } from './ICategoriesRepository';
 
-class PostgresCategoriesRepository implements ICategoriesRespository {
+class PostgresCategoriesRepository implements ICategoriesRepository {
   findByName(name: string): Category {
     console.log(name);
     return null;

@@ -3,11 +3,11 @@ import { Repository } from 'typeorm';
 import { AppDataSource } from '../../../../database/data-source';
 import { Category } from '../../../../database/entities/Category';
 import {
-  ICategoriesRespository,
+  ICategoriesRepository,
   ICreateCategoryDTO,
 } from '../ICategoriesRepository';
 
-class CategoriesRepository implements ICategoriesRespository {
+class CategoriesRepository implements ICategoriesRepository {
   private repository: Repository<Category>;
 
   constructor() {
