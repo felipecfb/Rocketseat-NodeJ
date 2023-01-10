@@ -13,13 +13,10 @@ class User {
   @Column({ type: 'varchar' })
   name: string;
 
-  @Column({ type: 'varchar', unique: true })
-  username: string;
-
   @Column({ type: 'varchar' })
   password: string;
 
-  @Column({ type: 'varchar' })
+  @Column({ type: 'varchar', unique: true })
   email: string;
 
   @Column({ type: 'varchar' })
