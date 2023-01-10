@@ -25,6 +25,9 @@ class User {
   @Column({ type: 'boolean', default: false })
   isAdmin: string;
 
+  @Column({ type: 'varchar', nullable: true })
+  avatar: string;
+
   @CreateDateColumn({
     type: 'timestamp',
     default: () => 'CURRENT_TIMESTAMP(6)',
