@@ -1,16 +1,26 @@
-import { v4 as uuidv4 } from 'uuid';
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  CreateDateColumn,
+} from 'typeorm';
 
+@Entity('specifications')
 class Specification {
+  @PrimaryGeneratedColumn('uuid')
   id?: string;
-  name: string;
-  description: string;
-  created_at: Date;
 
-  constructor() {
-    if (!this.id) {
-      this.id = uuidv4();
-    }
-  }
+  @Column({ type: 'varchar' })
+  name: string;
+
+  @Column({ type: 'varchar' })
+  description: string;
+
+  @CreateDateColumn({
+    type: 'timestamp',
+    default: () => 'CURRENT_TIMESTAMP(6)',
+  })
+  created_at: Date;
 }
 
 export { Specification };
