@@ -4,6 +4,7 @@ import {
   Column,
   CreateDateColumn,
 } from 'typeorm';
+import { v4 as uuidV4 } from 'uuid';
 
 @Entity('users')
 class User {
@@ -33,6 +34,12 @@ class User {
     default: () => 'CURRENT_TIMESTAMP(6)',
   })
   created_at: Date;
+
+  constructor() {
+    if (!this.id) {
+      this.id = uuidV4();
+    }
+  }
 }
 
 export { User };

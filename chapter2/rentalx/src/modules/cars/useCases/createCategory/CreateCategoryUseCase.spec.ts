@@ -28,7 +28,7 @@ describe('Create category', () => {
       category.name,
     );
 
-    expect(categoryCreated).toHaveProperty('name');
+    expect(categoryCreated).toHaveProperty('id');
   });
 
   it('should not be able to create a new category with name exists', () => {
