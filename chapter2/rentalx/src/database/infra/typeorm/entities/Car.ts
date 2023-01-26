@@ -3,15 +3,15 @@ import {
   PrimaryGeneratedColumn,
   Column,
   CreateDateColumn,
-  OneToMany,
   ManyToOne,
-  JoinTable,
   JoinColumn,
 } from 'typeorm';
 import { v4 as uuidV4 } from 'uuid';
 
+import { Category } from './Category';
+
 @Entity('cars')
-class Category {
+class Car {
   @PrimaryGeneratedColumn('uuid')
   id?: string;
 
@@ -56,4 +56,4 @@ class Category {
   }
 }
 
-export { Category };
+export { Car };
