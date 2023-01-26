@@ -4,7 +4,7 @@
   "main": "src/server.ts",
   "license": "MIT",
   "scripts": {
-    "dev": "ts-node-dev -r tsconfig-paths/register --transpile-only --poll --ignore-watch node_modules --respawn src/server.ts",
+    "dev": "ts-node-dev -r tsconfig-paths/register --transpile-only --poll --ignore-watch node_modules --respawn src/shared/infra/http/server.ts",
     "typeorm": "typeorm-ts-node-commonjs",
     "migration:generate": "typeorm-ts-node-commonjs -r tsconfig-paths/register -d ./src/database/data-source.ts migration:generate ./src/database/migrations/default",
     "migration:run": "typeorm-ts-node-commonjs -r tsconfig-paths/register -d ./src/database/data-source.ts migration:run",
