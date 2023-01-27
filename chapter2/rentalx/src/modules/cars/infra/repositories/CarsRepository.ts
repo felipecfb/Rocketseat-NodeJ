@@ -1,8 +1,8 @@
 import { Repository } from 'typeorm';
 
-import { AppDataSource } from '@database/data-source';
 import { ICreateCarDTO } from '@modules/cars/dtos/ICreateCarDTO';
 import { ICarsRepository } from '@modules/cars/repositories/ICarsRepository';
+import { AppDataSource } from '@shared/infra/typeorm/data-source';
 
 import { Car } from '../entities/Car';
 

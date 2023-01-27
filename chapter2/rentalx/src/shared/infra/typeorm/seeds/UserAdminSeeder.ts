@@ -12,6 +12,7 @@ export default class UserAdminsSeeder implements Seeder {
   ): Promise<any> {
     const id = uuidV4();
     const password = await hash('admin', 8);
+
     const repository = dataSource.getRepository(User);
     await repository.save([
       {
