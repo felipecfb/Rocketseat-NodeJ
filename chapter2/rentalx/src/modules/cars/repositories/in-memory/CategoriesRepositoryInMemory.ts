@@ -1,4 +1,4 @@
-import { Category } from '@database/infra/typeorm/entities/Category';
+import { Category } from '@modules/cars/infra/entities/Category';
 
 import {
   ICategoriesRepository,

@@ -3,7 +3,7 @@ import { DataSource } from 'typeorm';
 import { Seeder, SeederFactoryManager } from 'typeorm-extension';
 import { v4 as uuidV4 } from 'uuid';
 
-import { User } from '@database/infra/typeorm/entities/User';
+import { User } from '@modules/accounts/infra/typeorm/entities/User';
 
 export default class UserAdminsSeeder implements Seeder {
   public async run(

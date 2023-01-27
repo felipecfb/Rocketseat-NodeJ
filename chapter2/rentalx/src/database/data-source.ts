@@ -9,9 +9,9 @@ const options: DataSourceOptions & SeederOptions = {
   username: 'docker',
   password: 'ignite',
   database: 'db_rentx',
-  entities: [`${__dirname}/**/entities/*.{ts,js}`],
-  migrations: [`${__dirname}/**/migrations/*.{ts,js}`],
-  seeds: [`./src/database/seeds/UserAdminSeeder.ts`],
+  entities: ['./src/modules/**/entities/*.{ts,js}'],
+  migrations: ['./src/shared/**/migrations/*.{ts,js}'],
+  seeds: ['./src/shared/infra/typeorm/seeds/UserAdminSeeder.ts'],
 };
 
 const AppDataSource = new DataSource(options);
