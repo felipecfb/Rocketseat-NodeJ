@@ -24,7 +24,7 @@ class User {
   driver_license: string;
 
   @Column({ type: 'boolean', default: false })
-  isAdmin: string;
+  isAdmin: boolean;
 
   @Column({ type: 'varchar', nullable: true })
   avatar: string;
