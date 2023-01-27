@@ -27,8 +27,6 @@ class CreateCarController {
       category_id,
     });
 
-    console.log(car);
-
     return res.status(201).json(car);
   }
 }
