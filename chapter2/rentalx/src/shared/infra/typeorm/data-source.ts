@@ -12,6 +12,7 @@ const options: DataSourceOptions & SeederOptions = {
   entities: ['./src/modules/**/entities/*.{ts,js}'],
   migrations: ['./src/shared/**/migrations/*.{ts,js}'],
   seeds: ['./src/shared/infra/typeorm/seeds/UserAdminSeeder.ts'],
+  synchronize: true,
 };
 
 const AppDataSource = new DataSource(options);

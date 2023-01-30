@@ -1,32 +1,28 @@
 import {
   Entity,
-  PrimaryGeneratedColumn,
   Column,
   CreateDateColumn,
-  ManyToOne,
   JoinColumn,
+  OneToOne,
 } from 'typeorm';
 
 import { Car } from './Car';
 import { Specification } from './Specification';
 
 @Entity('specifications_cars')
-class SpecificationsCars {
-  @PrimaryGeneratedColumn('uuid')
-  id?: string;
-
-  @ManyToOne(() => Car)
+class SpecificationCars {
+  @OneToOne(() => Car)
   @JoinColumn({ name: 'car_id' })
   car: Car;
 
-  @Column({ type: 'varchar' })
+  @Column({ type: 'uuid', primary: true })
   car_id: string;
 
-  @ManyToOne(() => Specification)
+  @OneToOne(() => Specification)
   @JoinColumn({ name: 'specification_id' })
   specification: Specification;
 
-  @Column({ type: 'varchar' })
+  @Column({ type: 'uuid', primary: true })
   specification_id: string;
 
   @CreateDateColumn({
@@ -36,4 +32,4 @@ class SpecificationsCars {
   created_at: Date;
 }
 
-export { SpecificationsCars };
+export { SpecificationCars };

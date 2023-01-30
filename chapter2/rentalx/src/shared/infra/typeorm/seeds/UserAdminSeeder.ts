@@ -26,7 +26,6 @@ export default class UserAdminsSeeder implements Seeder {
         created_at: new Date(),
       },
     ]);
-
     console.log('User Admin Created');
   }
 }
