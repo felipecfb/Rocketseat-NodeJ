@@ -4,7 +4,7 @@ import { SeederOptions } from 'typeorm-extension';
 
 const options: DataSourceOptions & SeederOptions = {
   type: 'postgres',
-  host: 'db_rentx',
+  host: 'localhost',
   port: 5432,
   username: 'docker',
   password: 'ignite',
