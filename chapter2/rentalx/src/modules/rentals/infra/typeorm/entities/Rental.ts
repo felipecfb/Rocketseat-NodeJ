@@ -8,8 +8,8 @@ import {
 } from 'typeorm';
 import { v4 as uuidV4 } from 'uuid';
 
-import { User } from '../../../accounts/infra/typeorm/entities/User';
-import { Car } from './Car';
+import { User } from '../../../../accounts/infra/typeorm/entities/User';
+import { Car } from '../../../../cars/infra/entities/Car';
 
 @Entity('rentals')
 class Rental {
