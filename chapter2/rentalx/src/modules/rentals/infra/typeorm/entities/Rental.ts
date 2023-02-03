@@ -30,16 +30,16 @@ class Rental {
   @Column({ type: 'uuid' })
   user_id: string;
 
-  @Column({ type: 'timestamp' })
+  @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP(6)' })
   start_date: string;
 
-  @Column({ type: 'timestamp' })
+  @Column({ type: 'timestamp', nullable: true })
   end_date: string;
 
   @Column({ type: 'timestamp' })
   expected_return_date: string;
 
-  @Column({ type: 'numeric' })
+  @Column({ type: 'numeric', nullable: true })
   total: number;
 
   @CreateDateColumn({
