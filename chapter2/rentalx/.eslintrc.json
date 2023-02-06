@@ -75,7 +75,8 @@
         {
            "devDependencies": [
               "**/*.spec.js"
-           ]
+           ],
+           "packageDir": "./"
         }
      ],
      "prettier/prettier": "error"

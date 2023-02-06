@@ -31,13 +31,13 @@ class Rental {
   user_id: string;
 
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP(6)' })
-  start_date: string;
+  start_date: Date;
 
   @Column({ type: 'timestamp', nullable: true })
-  end_date: string;
+  end_date: Date;
 
   @Column({ type: 'timestamp' })
-  expected_return_date: string;
+  expected_return_date: Date;
 
   @Column({ type: 'numeric', nullable: true })
   total: number;
