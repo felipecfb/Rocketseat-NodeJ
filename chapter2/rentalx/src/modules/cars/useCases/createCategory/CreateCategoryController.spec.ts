@@ -1,19 +1,52 @@
+import { hash } from 'bcryptjs';
 import request from 'supertest';
+import { v4 as uuid } from 'uuid';
 
 import { app } from '@shared/infra/http/app';
+import { AppDataSource } from '@shared/infra/typeorm/data-source';
 
 describe('Create Category Controller', () => {
-  beforeEach(() => {
-    jest.useRealTimers();
+  beforeAll(async () => {
+    const id = uuid();
+    const password = await hash('admin', 8);
+
+    await AppDataSource.initialize()
+      .then(async () => {
+        await AppDataSource.dropDatabase();
+        await AppDataSource.runMigrations();
+        await AppDataSource.transaction(async transactionalEntityManager => [
+          await transactionalEntityManager.query(
+            `INSERT INTO USERS(id, name, email, password, "isAdmin", driver_license, created_at)
+      values('${id}', 'admin', 'admin@rentx.com', '${password}', true, 'XXXXXX', 'now()')`,
+          ),
+        ]);
+      })
+      .catch(err => {
+        console.error('Error during Data Source initialization', err);
+      });
+  });
+
+  afterAll(() => {
+    AppDataSource.destroy();
   });
 
   it('should be able to create a new category', async () => {
-    const response = await request(app).post('/categories').send({
-      name: 'Category Supertest',
-      description: 'Category Supertest description',
+    const responseToken = await request(app).post('/sessions').send({
+      email: 'admin@rentx.com',
+      password: 'admin',
     });
 
-    console.log(response);
+    const { token } = responseToken.body;
+
+    const response = await request(app)
+      .post('/categories')
+      .send({
+        name: 'Category Supertest',
+        description: 'Category Supertest description',
+      })
+      .set({
+        Authorization: `Bearer ${token}`,
+      });
 
     expect(response.status).toBe(201);
   });

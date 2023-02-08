@@ -21,7 +21,7 @@ class CreateCategoryUseCase {
     );
 
     if (categoryAlreadyExists) {
-      throw new AppError('Category alread exists!');
+      throw new AppError('Category already exists!');
     }
 
     this.categoriesRepository.create({ name, description });
