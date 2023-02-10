@@ -5,6 +5,7 @@ import {
   CreateDateColumn,
   OneToOne,
   JoinColumn,
+  ManyToMany,
 } from 'typeorm';
 import { v4 as uuidV4 } from 'uuid';
 
@@ -16,14 +17,14 @@ class Rental {
   @PrimaryGeneratedColumn('uuid')
   id?: string;
 
-  @OneToOne(() => Car)
+  @ManyToMany(() => Car)
   @JoinColumn({ name: 'car_id' })
   car: Car;
 
   @Column({ type: 'uuid' })
   car_id: string;
 
-  @OneToOne(() => User)
+  @ManyToMany(() => User)
   @JoinColumn({ name: 'user_id' })
   user: User;
 
