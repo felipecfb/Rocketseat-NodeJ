@@ -3,9 +3,8 @@ import {
   PrimaryGeneratedColumn,
   Column,
   CreateDateColumn,
-  OneToOne,
   JoinColumn,
-  ManyToMany,
+  ManyToOne,
 } from 'typeorm';
 import { v4 as uuidV4 } from 'uuid';
 
@@ -17,14 +16,14 @@ class Rental {
   @PrimaryGeneratedColumn('uuid')
   id?: string;
 
-  @ManyToMany(() => Car)
+  @ManyToOne(() => Car)
   @JoinColumn({ name: 'car_id' })
   car: Car;
 
   @Column({ type: 'uuid' })
   car_id: string;
 
-  @ManyToMany(() => User)
+  @ManyToOne(() => User)
   @JoinColumn({ name: 'user_id' })
   user: User;
 
