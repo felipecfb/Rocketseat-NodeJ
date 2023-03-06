@@ -1,5 +1,5 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Users\felipe.bastos\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add cross-env
+  C:\Program Files\nodejs\node.exe C:\Users\felipe.bastos\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add nodemailer
 
 PATH: 
   C:\Python311\Scripts\;C:\Python311\;C:\Program Files (x86)\Microsoft SDKs\Azure\CLI2\wbin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\Git\cmd;C:\ProgramData\chocolatey\bin;C:\Program Files\OpenJDK\openjdk-11.0.15_10\bin;C:\Users\felipe.bastos\Android\Sdk\emulator;C:\Users\felipe.bastos\Android\Sdk\tools;C:\Users\felipe.bastos\Android\Sdk\tools\bin;C:\Users\felipe.bastos\Android\Sdk\platform-tools;C:\Users\felipe.bastos\AppData\Local\Yarn\bin;C:\Users\felipe.bastos\AppData\Local\Programs\Microsoft VS Code\bin;C:\Program Files\GitHub CLI\;C:\Program Files\Git LFS;C:\composer;C:\Program Files\Docker\Docker\resources\bin;C:\Program Files\dotnet\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Users\felipe.bastos\AppData\Roaming\nvm;C:\Program Files\nodejs;C:\Program Files\nodejs\;C:\Users\felipe.bastos\AppData\Local\Microsoft\WindowsApps;C:\xampp\php;C:\src\flutter\bin;C:\Users\felipe.bastos\AppData\Local\Programs\Microsoft VS Code\bin;C:\Program Files\OpenSSL-Win64\bin;C:\Users\felipe.bastos\AppData\Local\gitkraken\bin;C:\Users\felipe.bastos\AppData\Roaming\Composer\vendor\bin;C:\Users\felipe.bastos\.fly\bin;C:\Users\felipe.bastos\AppData\Roaming\nvm;C:\Program Files\nodejs;C:\Users\felipe.bastos\AppData\Roaming\npm
@@ -27,13 +27,16 @@ npm manifest:
       "typeorm": "typeorm-ts-node-commonjs",
       "migration:create": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli migration:create",
       "migration:generate": "typeorm-ts-node-commonjs -d ./src/shared/infra/typeorm/data-source.ts migration:generate ./src/shared/infra/typeorm/migrations/default",
+      "migration:generate-test": "cross-env NODE_ENV=test typeorm-ts-node-commonjs -d ./src/shared/infra/typeorm/data-source.ts migration:generate ./src/shared/infra/typeorm/migrations/default",
       "migration:run": "typeorm-ts-node-commonjs -d ./src/shared/infra/typeorm/data-source.ts migration:run",
+      "migration:run-test": "cross-env NODE_ENV=test typeorm-ts-node-commonjs -d ./src/shared/infra/typeorm/data-source.ts migration:run",
       "seed:admin": "ts-node -r tsconfig-paths/register ./node_modules/typeorm-extension/dist/cli/index.js seed -d ./src/shared/infra/typeorm/data-source.ts",
-      "test": "set NODE_ENV=test jest"
+      "test": "cross-env NODE_ENV=test jest --runInBand --detectOpenHandles"
     },
     "dependencies": {
       "bcrypt": "^5.1.0",
       "bcryptjs": "^2.4.3",
+      "cross-env": "^7.0.3",
       "csv-parse": "^5.3.3",
       "dayjs": "^1.11.7",
       "express": "^4.18.2",
@@ -42,12 +45,12 @@ npm manifest:
       "multer": "^1.4.5-lts.1",
       "pg": "^8.8.0",
       "reflect-metadata": "^0.1.13",
+      "supertest": "^6.3.3",
       "swagger-ui-express": "^4.6.0",
       "tsyringe": "^4.7.0",
       "typeorm": "^0.3.11",
       "typeorm-extension": "^2.4.2",
-      "uuid": "^9.0.0",
-      "supertest": "^6.3.3"
+      "uuid": "^9.0.0"
     },
     "devDependencies": {
       "@types/bcrypt": "^5.0.0",
@@ -1716,7 +1719,14 @@ Lockfile:
     resolved "https://registry.npmjs.org/create-require/-/create-require-1.1.1.tgz"
     integrity sha512-dcKFX3jn0MpIaXjisoRvexIJVEKzaq7z2rZKxf+MSr9TkdmHmsU4m2lcLojrj/FHl8mk5VxMmYA+ftRkP/3oKQ==
   
-  cross-spawn@^7.0.2, cross-spawn@^7.0.3:
+  cross-env@^7.0.3:
+    version "7.0.3"
+    resolved "https://registry.yarnpkg.com/cross-env/-/cross-env-7.0.3.tgz#865264b29677dc015ba8418918965dd232fc54cf"
+    integrity sha512-+/HKd6EgcQCJGh2PSjZuUitQBQynKor4wrFbRg4DtAgS1aWO+gU52xpH7M9ScGgXSYmAVS9bIJ8EzuaGw0oNAw==
+    dependencies:
+      cross-spawn "^7.0.1"
+  
+  cross-spawn@^7.0.1, cross-spawn@^7.0.2, cross-spawn@^7.0.3:
     version "7.0.3"
     resolved "https://registry.npmjs.org/cross-spawn/-/cross-spawn-7.0.3.tgz"
     integrity sha512-iRDPJKUPVEND7dHPO8rkbOnPpyDygcDFtWjpeWNCgy8WP2rXcxXL8TskReQl6OrB2G7+UJrags1q15Fudc7G6w==
