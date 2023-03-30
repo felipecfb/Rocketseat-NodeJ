@@ -8,12 +8,10 @@ const database =
   process.env.NODE_ENV === 'test'
     ? 'db_rentx_test'
     : process.env.TYPEORM_DATABASE;
-const host =
-  process.env.NODE_ENV === 'test' ? 'localhost' : process.env.TYPEORM_HOST;
 
 const options: DataSourceOptions & SeederOptions = {
   type: 'postgres',
-  host: host,
+  host: process.env.TYPEORM_HOST,
   port: Number(process.env.TYPEORM_PORT),
   username: process.env.TYPEORM_USERNAME,
   password: process.env.TYPEORM_PASSWORD,
