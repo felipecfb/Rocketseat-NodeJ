@@ -1,16 +1,22 @@
+import 'dotenv/config';
+
 import 'reflect-metadata';
 import { DataSource, DataSourceOptions } from 'typeorm';
 import { SeederOptions } from 'typeorm-extension';
 
-const database = process.env.NODE_ENV === 'test' ? 'db_rentx_test' : 'db_rentx';
-const host = process.env.NODE_ENV === 'test' ? 'localhost' : 'db_rentx';
+const database =
+  process.env.NODE_ENV === 'test'
+    ? 'db_rentx_test'
+    : process.env.TYPEORM_DATABASE;
+const host =
+  process.env.NODE_ENV === 'test' ? 'localhost' : process.env.TYPEORM_HOST;
 
 const options: DataSourceOptions & SeederOptions = {
   type: 'postgres',
   host: host,
-  port: 5432,
-  username: 'docker',
-  password: 'ignite',
+  port: Number(process.env.TYPEORM_PORT),
+  username: process.env.TYPEORM_USERNAME,
+  password: process.env.TYPEORM_PASSWORD,
   database: database,
   entities: ['./src/modules/**/entities/*.{ts,js}'],
   migrations: ['./src/shared/**/migrations/*.{ts,js}'],
